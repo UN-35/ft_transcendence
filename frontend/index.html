@@ -1,0 +1,614 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&family=Press+Start+2P&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Smooch+Sans:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/img/icon.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bangers&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap">
+    <link rel="stylesheet" href="/css/Styles.css">
+    <link rel="stylesheet" href="/css/trnmt.css">
+    <link rel="stylesheet" href="/css/Dashboard.css">
+    <link rel="stylesheet" href="/css/logIn.css">
+    <link rel="stylesheet" href="/css/user.css">
+    <link rel="stylesheet" href="/css/Signup.css">
+    <link rel="stylesheet" href="/css/editProfile.css">
+    <link rel="stylesheet" href="/css/settings.css">
+    <link rel="stylesheet" href="/css/Profile.css">
+    <link rel="stylesheet" href="/css/gameMode.css">
+    <link rel="stylesheet" href="/css/friends.css">
+    <link rel="stylesheet" href="/css/game.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&family=Press+Start+2P&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Protest+Guerrilla&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.172.0/build/three.module.js",
+            "three/examples/": "https://cdn.jsdelivr.net/npm/three@0.172.0/examples/"
+          }
+        }
+      </script>
+    <title>PingPong</title>
+    <!-- <style>
+        canvas.webgl{
+    height: 500px;
+    width: 500px;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100000;
+    background: red;
+}
+    </style> -->
+</head>
+<body>
+    <header class="p-3 d-flex justify-content-between align-items-center">
+        <nav class="nav-links d-flex align-items-center">
+            <label for="language-select" class="me-2 fw-semibold">Select the Language you prefer:</label>
+            <select class="form-select w-auto" id="language-select" aria-label="Select Language">
+                <option value="en" data-translate="true">English</option>
+                <option value="fr" data-translate="true">French</option>
+                <option value="es" data-translate="true">Spanish</option>
+            </select>
+        </nav>
+    </header>
+    
+    
+
+    <div id="signup" class="signup-container">
+        <div class="form-section">
+            <h1 id="signup-title" data-translate="true">CREATE ACCOUNT</h1>
+            <p id="signup-subtitle" data-translate="true">Join the PingPong adventure</p>
+            <form class="form-selection" id="signupForm">
+                <!-- {% csrf_token %} -->
+                <div class="input-group">
+                    <label for="signup-username" id="signup-username-label" data-translate="true">Username</label>
+                    <input type="text" id="signup-username" data-translate-placeholder="true" name="username" placeholder="Enter your username">
+                </div>
+                <div class="input-group">
+                    <label for="signup-email" data-translate="true" id="signup-email-label">Email</label>
+                    <input type="email" id="signup-email" data-translate-placeholder="true" name="email" placeholder="Enter your email">
+                </div> 
+                <div class="input-group">
+                    <label for="signup-password" data-translate="true" id="signup-password-label">Password</label>
+                    <input type="password" id="signup-password" data-translate-placeholder="true" name="password" placeholder="Enter your password">
+                </div>
+                <div class="input-group">
+                    <label for="signup-password" data-translate="true" id="signup-confirmpassword-label">Confirm password</label>
+                    <input type="password" id="signup-password1" data-translate-placeholder="true" name="confirm_password" placeholder="Confirm your password">
+                </div>
+                <button type="submit" data-translate="true" class="btn" id="signupBtn">Sign up</button>
+                <div class="extra-options">
+                    <p class="toggle-form" id="toggle-login" data-translate="true">Already have an account? <a href="#login-form" data-translate="true">Sign in</a></p>
+                </div>
+            </form>
+            <div id="signup-message-container"></div>
+        </div>
+    </div>
+
+
+    <div id="login-form" class="form-content">
+        <div class="form-section">
+            
+            <h1 class="title" id="login-title">
+                Login
+                <img src="/img/icon.png" alt="Icon" class="img-fluid">
+            </h1>
+            <p class="subtitle" data-translate="true" id="login-subtitle">this is where our adventure begins</p>
+            <form class="form-selection" id="loginForm">
+                <!-- {% csrf_token %} -->
+                <label for="email" class="input-label" data-translate="true" id="email-label">Email</label>
+                <div class="input-group">
+                    <input type="text" data-translate-placeholder="true" class="form-control" id="email" name="email" placeholder="Enter your email">
+                </div>
+                <label for="password" class="input-label" data-translate="true" id="password-label">Password</label>
+                <div class="input-group">
+                    <input type="password" id="password" class="form-control" data-translate-placeholder="true" name="password" placeholder="Enter your password">
+                </div>
+                <div class="separator" id="or">or</div>
+                <a class="login-options" href="#" data-translate="true">
+                    <div class="logo-container">
+                        <img src="/img/42Logo.png" alt="42 Logo" id="42logo" class="logo">
+                        <img src="/img/google.png" alt="Google" id="googlelogo" class="logo">
+                    </div>
+                </a>
+                <button type="submit" class="btn-primary" data-translate="true" id="loginBtn">Log in</button>
+                <div class="extra-options">
+                    <p class="forgot-password-link signuplink" id="signup-link" data-translate="true">New gamer? <a href="#signup" data-translate="true">Create your account</a></p>
+                </div>
+            </form>
+            <div id="login-message-container"></div>
+        </div>
+    </div>
+
+
+
+    <div id="game-selection">
+        <div class="sidebar">
+            <div class="icon top"><img src="/img/img.png" alt="game"></div>
+            <div class="middle-icons">
+                <div class="icon" id="grid-icon"><img src="/img/grid.png" alt="Grid"></div>
+                <div class="icon" id="user-icon"><img src="/img/useeerr.png" alt="User"></div>
+                <div class="icon" id="game-icon"><img src="/img/gaaaame.png" alt="Game"></div>
+                <div class="icon" id="mode-game-icon"><img src="/img/ping-pong.png" alt="Table"></div>
+                <div class="icon" id="friends-icon"><img src="/img/friends.png" alt="Friends"></div>
+
+            </div>
+            <div class="icon bottom" id="settings-icon"><img src="/img/settipo.png" alt="Settings"></div>
+            <div class="icon bottom" id="logout-icon"><img src="/img/logout.png" alt="Logout"></div>
+        </div>
+    
+        <div class="game-mode1">
+                <div class="large-image" id="tournament">
+                    <img src="/img/tesst2.png" alt="Ping Pong Tournament">
+                    <button class="join-button" data-translate="true" id="jointrnmt">Join Tournament</button>
+                </div>
+                <div class="small-images">
+                    <button class="image" id="game-local">
+                        <img src="/img/avatar2.jpeg" alt="Local">
+                        <span data-translate="true" id="local1">Local</span>
+                    </button>
+                    <button class="image" id="game-remote">
+                        <img src="/img/home-v2.png" alt="Remote" />
+                        <span data-translate="true" id="remote1">Remote</span>
+                    </button>
+            </div>
+        </div>
+    </div>
+        
+
+    <div id="game">
+        <div class="game-info">
+        </div>
+        <div class="game-container">
+            <canvas class="webgl game-canvas" style="display: block;"></canvas>
+        </div>
+    </div>
+
+
+
+    <div id="tournament-registration" class="tournament-registration-container">
+        <div class="tournament">
+            <h1 data-translate="true" id="trnmtregistr">Tournament Registration</h1>
+            
+                <div class="input-group">
+                    <input type="text" id="player1" data-translate-placeholder="true" name="player1" placeholder="Enter player 1 username" >
+                </div>
+                <div class="input-group">
+                    <input type="text" id="player2" data-translate-placeholder="true" name="player2" placeholder="Enter player 2 username" >
+                </div>
+                <div class="input-group">
+                    <input type="text" id="player3" data-translate-placeholder="true" name="player3" placeholder="Enter player 3 username" >
+                </div>
+                <div class="input-group">
+                    <input type="text" id="player4" data-translate-placeholder="true" name="player4" placeholder="Enter player 4 username" >
+                </div>
+                <button class="btn" data-translate="true"  id="tournamentBtn">Join Tournament</button>
+            
+            <div id="tournament-message-container"></div>
+        </div>
+    </div>
+
+
+    <div id="profile" class="profile-container">
+        <div class="sidebar">
+            <div class="icon top"><img src="/img/img.png" alt="game"></div>
+            <div class="middle-icons">
+                <div class="icon" id="grid-icon"><img src="/img/grid.png" alt="Grid"></div>
+                <div class="icon" id="user-icon"><img src="/img/useeerr.png" alt="User"></div>
+                <div class="icon" id="game-icon"><img src="/img/gaaaame.png" alt="Game"></div>
+                <div class="icon" id="mode-game-icon"><img src="/img/ping-pong.png" alt="Table"></div>
+                <div class="icon" id="friends-icon"><img src="/img/friends.png" alt="Friends"></div>
+
+            </div>
+            <div class="icon bottom" id="settings-icon"><img src="/img/settipo.png" alt="Settings"></div>
+            <div class="icon bottom" id="logout-icon"><img src="/img/logout.png" alt="Logout"></div>
+        </div>
+        <div class="profile-card">
+            <div id="profile-avatar-img" class="profile-avatar">
+                <img src="/img/avatar2.jpeg" alt="Profile Avatar"/>
+            </div>
+            <h2 id="display-username" class="profile-name">Kkouaz</h2>
+            <p id="display-email" class="profile-email">Kkouaz@student.1337.ma</p>
+            <div class="profile-level-container row justify-content-between">
+                <div class="profile-level-label col-5" data-translate="true" id="level">Level</div>
+                <div id="display-score" class="profile-level-value col-5">0.0</div>
+            </div>
+            <div class="editbtn mt-5">
+                <button class="edit-profile-btn" data-translate="true" id="editprfl">
+                    Edit Profile
+                    <img src="/img/pencilw.png" alt="Icon" class="img-fluid">
+                </button>
+            </div>
+            <div id="profile-message-container"></div>
+        </div>
+    </div>
+    
+
+
+
+
+
+    <div id="editprofile" class="editprofile-container">
+        <div class="sidebar">
+            <div class="icon top"><img src="/img/img.png" alt="game" ></div>
+            <div class="middle-icons">
+                <div class="icon" id="grid-icon"><img src="/img/grid.png" alt="Grid"></div>
+                <div class="icon" id="user-icon"><img src="/img/useeerr.png" alt="User"></div>
+                <div class="icon" id="game-icon"><img src="/img/gaaaame.png" alt="Game"></div>
+                <div class="icon" id="mode-game-icon"><img src="/img/ping-pong.png" alt="Table"></div>
+                <div class="icon" id="friends-icon"><img src="/img/friends.png" alt="Friends"></div>
+
+            </div>
+            <div class="icon bottom" id="settings-icon"><img src="/img/settipo.png" alt="Settings"></div>
+            <div class="icon bottom" id="logout-icon"><img src="/img/logout.png" alt="Logout"></div>
+        </div>
+        
+        <div class="editprofile-card">
+            
+            <h1 class="edit-title" data-translate="true" id="editprfl1">Edit Profile</h1>
+            <div class="apload-image">
+                <div class="avatar-section">
+                    <img src="/img/avatar2.jpeg" alt="Avatar" class="avatar-img" id="edit-avatar-img"> 
+                    
+                </div>
+                <input type="file" id="change-image" accept="image/*" />
+
+            </div>
+
+            <div class="edit-username">
+                <input type="text" id="edit-username" data-translate-placeholder="true" name="edit-username" placeholder="Enter new username">
+            </div>
+            <div class="goback">
+                <button class="btn" id="savechanges" data-translate="true">Save Changes</button>
+                <button class="btn" id="goback-btn" data-translate="true">Go Back</button>
+            </div>
+            <div id="editprofile-message-container"></div>
+        </div>
+    </div>
+
+
+
+
+    <div id="dashboard" class="dashboard-container">
+        <div class="sidebar">
+            <div class="icon top"><img src="/img/img.png" alt="game"></div>
+            <div class="middle-icons">
+                <div class="icon" id="grid-icon"><img src="/img/grid.png" alt="Grid"></div>
+                <div class="icon" id="user-icon"><img src="/img/useeerr.png" alt="User"></div>
+                <div class="icon" id="game-icon"><img src="/img/gaaaame.png" alt="Game"></div>
+                <div class="icon" id="mode-game-icon"><img src="/img/ping-pong.png" alt="Table"></div>
+                <div class="icon" id="friends-icon"><img src="/img/friends.png" alt="Friends"></div>
+
+            </div>
+            <div class="icon bottom" id="settings-icon"><img src="/img/settipo.png" alt="Settings"></div>
+            <div class="icon bottom" id="logout-icon"><img src="/img/logout.png" alt="Logout"></div>
+        </div>
+        <div class="dashboard-content">
+            <div class="leaderboard">
+                <h2 id="leader" data-translate="true">Leaderboard</h2>
+                <ul class="leaderboard-list">
+                    <li class="leaderboard-item">
+                        <div class="info-user">
+                            <div class="rank">1</div>
+                            <div class="user-img">
+                                <img src="/img/avatar2.jpeg" alt="User">
+                            </div>
+                            <div class="username">Username</div>
+                        </div>
+                        <div class="xp">10057 xp</div>
+                    </li>
+                </ul>
+                
+            </div>
+            <div class="stats-game-container">
+                <div class="stats">
+                    <div class="profile-avatar" id="profile-avatar">
+                        <img src="/img/avatar2.jpeg" alt="Profile Avatar">
+                    </div>
+                    <div class="level">
+                        <span class="label" data-translate="true" id="lvl">Level</span>
+                        <span class="value" id="lvl-value">5</span>
+                    </div>
+                    <div class="win-rate">
+                        <div class="circle" id="winRateCircle">
+                            <span class="percentage">75%</span>
+                            <span class="label" id="win" data-translate="true" >win rate</span>
+                        </div>
+                    </div>
+                    <div class="lose-rate">
+                        <div class="circle" id="loseRateCircle">
+                            <span class="percentage">25%</span>
+                            <span class="label" id="lose" data-translate="true">lose rate</span>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="match-history">
+                    <h2 id="matchhis" data-translate="true">Match History</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th id="opponent" data-translate="true">Opponent</th>
+                                <th id="match-date" data-translate="true">Date</th>
+                                <th id="match-type" data-translate="true">Match Type</th>
+                                <th id="match-result" data-translate="true">Result</th>
+                                <th id="match-score" data-translate="true">Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <img src="/img/avatar1.jpeg" alt="Opponent">
+                                    OpponentUsername
+                                </td>
+                                <td>2025-01-08</td>
+                                <td>1v1</td>
+                                <td>Won</td>
+                                <td>11-7</td>
+                            </tr>
+
+                            
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div>
+            <div id="dashboard-message-container"></div>
+        </div>
+    </div>
+
+
+    
+
+    <div id="user-profile-overlay" class="overlay hidden" aria-hidden="true">
+        <div class="overlay-content">
+            <div id="profile-useravatar-img" class="profileuser-avatar">
+                <img src="img/avatar3.jpeg" alt="Profile Avatar"/>
+            </div>
+            <h2 id="display-userusername" class="profile-name">Username</h2>
+            <p id="display-useremail" class="profile-email">email@example.com</p>
+            <div class="profile-level-container row justify-content-between">
+                <div class="profile-level-label col-5" data-translate="true" id="level">Level</div>
+                <div id="display-userscore" class="profile-level-value col-5">0.0</div>
+            </div>
+            <div class="addfrndbtn mt-5">
+                <button class="addfrn-btn" data-translate="true" id="addfrnd">
+                    Add Friend
+                </button>
+            </div>
+            <div class="closebtn">
+                <button class="close-overlay" data-translate="true" onclick="closeOverlay9()">Close</button>
+            </div>
+            <div id="user-profile-message-container"></div>
+        </div>
+    </div>
+
+
+
+    
+
+
+
+
+    <div id="settings" class="settings-container">
+        <div class="sidebar">
+            <div class="icon top"><img src="/img/img.png" alt="game"></div>
+            <div class="middle-icons">
+                <div class="icon" id="grid-icon"><img src="/img/grid.png" alt="Grid"></div>
+                <div class="icon" id="user-icon"><img src="/img/useeerr.png" alt="User"></div>
+                <div class="icon" id="game-icon"><img src="/img/gaaaame.png" alt="Game"></div>
+                <div class="icon" id="mode-game-icon"><img src="/img/ping-pong.png" alt="Table"></div>
+                <div class="icon" id="friends-icon"><img src="/img/friends.png" alt="Friends"></div>
+
+            </div>
+            <div class="icon bottom" id="settings-icon"><img src="/img/settipo.png" alt="Settings"></div>
+            <div class="icon bottom" id="logout-icon"><img src="/img/logout.png" alt="Logout"></div>
+        </div>
+    
+        <div class="main-content">
+            <h1 data-translate="true" id="set2">Settings</h1>
+            <div id="settings-options" class="content">
+                <button class="btn" data-translate="true" onclick="showChangePassword()" id="changepass">Change Password</button>
+                <button class="btn" data-translate="true" onclick="showEnable2FA()" id="enable2f">Enable 2FA</button>
+                <button class="btn" data-translate="true" onclick="showDisable2FA()" id="disable2f">Disable 2FA</button>
+                <button class="btn" data-translate="true" onclick="showDeleteAccount()" id="deleteacc">Delete Account</button>
+            </div>
+            <div id="settings-message-container"></div>
+        </div>
+    </div>
+    
+    
+
+    <div id="change-password-overlay" class="overlay hidden" aria-hidden="true">
+        <div class="overlay-content">
+            <input type="password" id="currpass" data-translate-placeholder="true" placeholder="Enter your current password" aria-label="Current password">
+            <input type="password" id="newpass" data-translate-placeholder="true" placeholder="Enter your new password" aria-label="New password">
+            <input type="password" id="cfmnewpass" data-translate-placeholder="true" placeholder="Confirm your new password" aria-label="Confirm new password">
+            <button class="btn" id="savedata" data-translate="true"  type="button">Save changes</button>
+            <button class="btn" id="closedata" data-translate="true" onclick="closeOverlay()" type="button">Close</button>
+            <div id="change-password-message-container"></div>
+        </div>
+    </div>
+    
+    
+    
+    
+    <div id="enable-2fa-overlay" class="overlay hidden" aria-hidden="true">
+        <div class="overlay-content">
+            <h2 id="enbl2" data-translate="true">Enable 2FA</h2>
+            <p id="qrscan" data-translate="true">Scan this QR code with Google Authenticator (or similar app):</p>
+            <img src="" alt="QR Code"> 
+            <input type="text" id="passcode-holder" data-translate-placeholder="true" placeholder="Enter the 6-digit code generated by your app" aria-label="2FA passcode">
+            <button class="btn" id="sbmt" data-translate="true" onclick="submitTwoFactorCode()">Submit</button>
+            <button class="btn" id="cls" data-translate="true" onclick="closeOverlay1()">Close</button>
+            <div id="enable-2fa-message-container"></div>
+        </div>
+    </div>
+
+
+
+
+    <div id="verify-2fa-overlay" class="overlay hidden" aria-hidden="true">
+        <div class="overlay-content">
+            <h2 id="vrf2" data-translate="true">Verify 2FA</h2>
+            <p id="vrfinfo" data-translate="true">Enter the 6-digit code from your authenticator app:</p>
+            <input type="text" id="verification-passcode" data-translate-placeholder="true" placeholder="Enter the code" aria-label="2FA verification code">
+            <button class="btn" id="vrf-submit" data-translate="true" onclick="submitVerificationCode()">Submit</button>
+            <button class="btn" id="vrf-close" data-translate="true" onclick="closeOverlay3()">Close</button>
+            <div id="verify-2fa-message-container"></div>
+        </div>
+    </div>
+    
+
+
+     <div id="disable-2fa-overlay" class="overlay hidden" aria-hidden="true">
+        <div class="overlay-content">
+            <p class="confirmation-text"></p>
+            <p class="confirmation-text" data-translate="true" id="disable2f1">Are you sure you want to disable 2FA? This will reduce the security of your account.</p>
+            <button class="btn" onclick="submitDisable2FA()" id="cnrfm">Confirm</button>
+            <button class="btn" onclick="closeOverlay2()" id="cncl">Cancel</button>
+            <div id="disable-2fa-message-container"></div>
+        </div>
+    </div>
+
+    <div id="delete-account-overlay" class="overlay hidden" aria-hidden="true">
+        <div class="overlay-content">
+            <p class="confirmation-text" data-translate="true" id="conf-del">Are you sure you want to delete your account? This action cannot be undone.</p>
+            <button class="btn" onclick="submitDeleteAccount()" id="confirm-delete">Confirm</button>
+            <button class="btn" onclick="closeOverlay4()" id="cancel-delete">Cancel</button>
+            <div id="delete-account-message-container"></div>
+        </div>
+    </div>
+
+
+
+
+
+    
+
+
+    <div id="friends" class="friends-container">
+        <div class="sidebar">
+            <div class="icon top"><img src="/img/img.png" alt="game"></div>
+            <div class="middle-icons">
+                <div class="icon" id="grid-icon"><img src="/img/grid.png" alt="Grid"></div>
+                <div class="icon" id="user-icon"><img src="/img/useeerr.png" alt="User"></div>
+                <div class="icon" id="game-icon"><img src="/img/gaaaame.png" alt="Game"></div>
+                <div class="icon" id="mode-game-icon"><img src="/img/ping-pong.png" alt="Table"></div>
+                <div class="icon" id="friends-icon"><img src="/img/friends.png" alt="Friends"></div>
+            </div>
+            <div class="icon bottom" id="settings-icon"><img src="/img/settipo.png" alt="Settings"></div>
+            <div class="icon bottom" id="logout-icon"><img src="/img/logout.png" alt="Logout"></div>
+        </div>
+    
+        <div class="main-content">
+            <h1 data-translate="true" id="frnd">Friends</h1>
+            <div id="friends-options" class="content">
+                <button class="btn" data-translate="true" onclick="showFriendRequest()" id="friendrqst">Friend Request</button>
+                <button class="btn" data-translate="true" onclick="showAddFriend()" id="addfrnd">Add Friend</button>
+                <!-- <button class="btn" data-translate="true" onclick="showRemoveFriend()" id="rmvfrnd">Remove Freind</button> -->
+                <button class="btn" data-translate="true" onclick="showMyFriends()" id="myfriend">My Friends</button>
+            </div>
+            <div id="friends-message-container"></div>
+        </div>
+    </div>
+    
+    <div id="friend-request-overlay" class="overlay hidden" aria-hidden="true">
+        <div class="overlay-content">
+            <h2 id="frndrqst" data-translate="true">Friend Request</h2>
+            <div class="friend-requests">
+                <ul class="friend-requests-list">
+                    <!-- request of friends here  -->
+                    
+                </ul>
+                <button class="btn" onclick="closeOverlay5()" id="cancel-delete">Cancel</button>
+            </div>
+            <div id="friend-request-message-container"></div>
+        </div>
+    </div>
+
+    <div id="add-friend-overlay" class="overlay hidden" aria-hidden="true">
+        <div class="overlay-content">
+            <h2 id="addfrnd1" data-translate="true">Add Friend</h2>
+            <input type="text" id="add-friend-username" data-translate-placeholder="true" placeholder="Enter the username of the friend you want to add" aria-label="Friend username">
+            <button class="btn" id="add-friend-submit" data-translate="true" onclick="submitAddFriend()">Add Friend</button>
+            <button class="btn" id="add-friend-close" data-translate="true" onclick="closeOverlay6()">Close</button>
+            <div id="add-friend-message-container"></div>
+        </div>
+    </div>
+
+    <!-- <div id="remove-friend-overlay" class="overlay hidden" aria-hidden="true">
+        <div class="overlay-content">
+            <h2 id="rmvfrnd1" data-translate="true">Remove Friend</h2>
+            <input type="text" id="remove-friend-username" data-translate-placeholder="true" placeholder="Enter the username of the friend you want to remove" aria-label="Friend username">
+            <button class="btn" id="remove-friend-submit" data-translate="true" onclick="submitRemoveFriend()">Remove Friend</button>
+            <button class="btn" id="remove-friend-close" data-translate="true" onclick="closeOverlay7()">Close</button>
+        </div>
+    </div> -->
+
+    
+    <div id="my-friends-overlay" class="overlay hidden" aria-hidden="true">
+        <div class="overlay-content">
+            <h2 id="myfrnd" data-translate="true">My Friends</h2>
+            <ul class="friend-list">
+                <!-- <li>
+                    <div class="friend-item">
+                        <div class="friend-username" id="name">Hiamedja</div>
+                        <div class="friend-status online" id="status">Online</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="friend-item">
+                        <div class="friend-username" id="name">Kkouaz</div>
+                        <div class="friend-status online" id="status">Online</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="friend-item">
+                        <div class="friend-username" id="name">Yoelansa</div>
+                        <div class="friend-status offline" id="status">Offline</div>
+                    </div>
+                </li> -->
+            </ul>
+            <button class="btn" onclick="closeOverlay8()" id="cancel-delete">Cancel</button>
+            <div id="my-friends-message-container"></div>
+        </div>
+    </div>
+
+
+    
+
+
+
+
+
+    <script src="/js/Dashboard.js"></script>
+    <script src="/js/settings1.js"></script>
+    <script src="/js/Translate.js"></script>
+    <script src="/js/formUtils.js"></script>
+
+
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.172.0/three.module.js" integrity="sha512-1GeabPDkCxlAZy/nDoLN3XCtrSy7zPEf+eQShxzdtPQX8KK1OF14+OttyOSgjS6j3hsq/v9EZjxYle2gsYVLMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <!-- <script type="module" src="./js/game/Ball.js" ></script>
+    <script type="module" src="./js/game/Paddle.js" ></script>
+    <script type="module" src="./js/game/manage-scores.js" ></script>
+    <script type="module" src="./js/game/main.js" ></script> -->
+    <script type="module" src="./js/game/index.js" ></script>
+</body>
+</html>

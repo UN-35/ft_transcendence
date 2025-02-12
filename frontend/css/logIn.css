@@ -1,0 +1,258 @@
+
+
+
+
+
+
+
+.form-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+    width: 100%; 
+    background: url('../img/login.jpeg') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+
+#login-form .form-section {
+    background-color: rgba(78, 45, 29, 0.411);
+    background: linear-gradient(rgba(78, 45, 29, 0.411), transparent);
+    padding: 20px;
+    border-radius: 28px;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    border: 0.5px solid rgba(255, 252, 252, 0.733);
+    /* text-align: center; */
+}
+
+/* #login-form.form-selection {
+    /* display: flex; */
+    /* flex-direction: column;// */
+    /* align-items: stretch; */
+    /* justify-content: center; */
+    /* align-items: center; */
+ 
+#login-form .form-selection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#login-form .title {
+    font-family: "Itim", cursive;
+    font-style: normal;
+    font-size: 2rem;
+    display: flex;
+    color: #ffffff;
+    justify-content: center;
+    align-items: center;
+}
+
+/* .title-container img { */
+    /* margin-left: 20px; */
+    /* width: 23px; */
+    /* height: auto; */
+/* } */
+
+#login-form .title img {
+    width: 29px;
+    /* margin-right: 10px; */
+    /* align-items: center; */
+}
+
+#login-form .subtitle {
+    font-family: "Itim", cursive;
+    font-size: 0.9rem;
+    color: #ffffff;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+#login-form .input-label {
+    font-family: "Itim", cursive;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+    /* text-align: left; */
+    /* align-self: flex-start; */
+}
+
+#login-form .input-group {
+    font-family: "Itim", cursive;
+    display: flex;
+    /* align-items: center; */
+    background-color: #e2bfeb;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+}
+
+#login-form .input-group input {
+    border: none;
+    background: #d5bfda9f;
+    font-size: 1rem;
+    margin-left: 0.5rem;
+}
+
+#login-form .input-group input:focus {
+    box-shadow: none;
+}
+
+
+#login-form .btn-primary {
+    background-color: #ffffff;
+    color: #0c0707;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
+
+#login-form .alternative-login {
+    display: flex;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+#login-form .nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000000;
+    margin: 2rem;
+}
+
+
+#login-form .logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+
+#login-form .logo-container .logo {
+    width: 30px; 
+    height: auto;
+    margin: 0 10px 0 0; 
+    cursor: pointer;
+    background-color: #ffffff5e;
+    border-radius: 50%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#login-form .logo-container .logo + .logo {
+    margin-left: 40px;
+}
+
+#login-form .logo-container .logo:hover {
+    transform: scale(1.8); 
+
+}
+
+#login-form .separator {
+    font-family: "Itim", cursive;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    margin: 20px 0;
+    color: #d1a1d8;
+    font-size: 1.2rem;
+  
+}
+
+#login-form .separator::before,
+.separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #d1a1d8;
+    margin: 0 10px;
+}
+
+#login-form .separator::before {
+    margin-right: 10px;
+}
+
+#login-form #loginBtn {
+    width: 70%;
+
+    padding: 10px;
+    border-radius: 8px;
+    font-family: "Roboto", sans-serif;
+    background-color: #e57373;
+    color: #ffffff;
+    font-size: 1em;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#login-form #loginBtn:hover {
+    background-color: #d64a4a;
+}
+
+#login-form .extra-options {
+    font-family: "Roboto", sans-serif;
+    margin-top: 15px;
+    color: #d3d3d3;
+}
+
+#login-form .signuplink a {
+    font-family: "Roboto", sans-serif;
+    color: #e57373;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#login-form .signuplink a:hover {
+    color: #ff8a80;
+    text-decoration: underline;
+}
+
+
+@media (max-width: 768px) {
+    .form-content {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    #login-form .form-section {
+        max-width: 90%; 
+    }
+
+    #login-form .title {
+        font-size: 1.5rem; 
+    }
+}
+
+@media (max-width: 480px) {
+    #login-form .input-group input {
+        font-size: 0.9rem; 
+    }
+
+    #login-form .btn-primary {
+        font-size: 1rem; 
+        padding: 10px; 
+    }
+}
+
+#login-form .btn-primary, 
+#login-form #loginBtn {
+    min-height: 44px; 
+}
+
+
+
+@media (max-width: 600px) {
+    .form-content {
+        background-size: contain;
+    }
+}

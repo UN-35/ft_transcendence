@@ -1,0 +1,603 @@
+.settings-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  box-sizing: border-box;
+  width: 100%;
+  color: #fff;
+  overflow-x: hidden; 
+  overflow-x: auto;
+  flex-wrap: wrap;
+  padding: 0 10px;
+}
+
+#settings .sidebar {
+  width: 70px;
+  height: 90vh;
+  background-color: #5c4b7d9d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  margin-left: 30px;
+  margin-top: 45px;
+  background: linear-gradient(rgba(60, 45, 71, 0.608), #2E2238);
+  left: 0;
+  border-radius: 15px; 
+}
+
+#settings .sidebar .middle-icons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+#settings .sidebar .icon {
+  margin: 20px 0;
+  width: 40px;
+  height: 40px;
+}
+
+#settings .sidebar .icon img {
+  width: 100%;
+  height: auto;
+}
+
+#settings .sidebar .icon:hover {
+  background-color: #5c4b7d;
+  border-radius: 50%;
+}
+
+#settings .main-content {
+  background-color: rgba(78, 45, 29, 0.411);
+  background: linear-gradient(rgba(78, 45, 29, 0.411), transparent);
+  border-radius: 10%;
+  width: 26%;
+  padding: 50px;
+  
+  border: 0.1px solid rgb(255, 252, 252);
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  
+  transition: width 0.3s ease-in-out; /* Smooth transition for width */
+}
+
+
+#settings .main-content h1 {
+  font-size: 2rem;
+  margin-bottom: 50px;
+  font-family: "Itim", cursive;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%; 
+}
+#settings .main-content .content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#settings .main-content .hidden {
+  display: none;
+}
+
+
+#settings .main-content .btn {
+  background: #6a4d7e;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin-bottom: 50px;
+  cursor: pointer;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%; 
+}
+#settings .main-content input {
+  font-family: "Itim", cursive;
+  font-size: 20px;
+  border-radius: 20px;
+  background-color: #d9d9d927;
+  font-weight: bold;
+  margin-bottom: 50px;
+  color: #f6e4ff99;
+  padding: 2px;
+}
+
+#settings .main-content img {
+  width: 200px;
+  height: 200px;
+  border: 4px solid #502a5e;
+  object-fit: cover;
+  margin-bottom: 50px;
+}
+
+#settings .main-content input::placeholder {
+  color: #f6e4ff99;
+}
+
+#settings .main-content input:focus {
+  outline: none;
+}
+
+#settings .main-content .btn:hover {
+  background: #5c4b7d;
+}
+
+#settings .main-content .btn:active {
+  transform: scale(0.98);
+}
+
+#settings .settingd-options {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 50px;
+}
+
+
+
+
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; 
+  height: 100%; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 10px; 
+  box-sizing: border-box;
+  overflow-x: auto;
+}
+
+.hidden {
+  display: none;
+}
+
+#change-password-overlay .overlay-content {
+  background: linear-gradient(rgba(78, 45, 29, 0.411), transparent);
+  background-color: #422c49;
+  border-radius: 10%;
+  padding: 36px;
+  border: 0.1px solid rgb(255, 252, 252);
+  text-align: center;
+  box-sizing: border-box;
+  width: 26%; 
+  max-width: none;
+  height: auto;
+
+}
+
+
+#change-password-overlay .overlay-content h2 {
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 26px;
+  font-family: "Itim", cursive;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%; 
+}
+
+#change-password-overlay .overlay-content input {
+  background: #6a4d7e;
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: 20px;
+  margin-bottom: 26px;
+  width: 100%; 
+  box-sizing: border-box;
+  font-size: 1rem; 
+}
+
+#change-password-overlay .overlay-content input[type="password"]:focus {
+  border-color: #f105e95f;
+  box-shadow: 0 0 5px rgba(162, 0, 255, 0.3);
+}
+
+
+
+#change-password-overlay .overlay-content .btn {
+  background: #6a4d7e;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin-bottom: 26px;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#enable-2fa-overlay .overlay-content {
+  background: linear-gradient(rgba(78, 45, 29, 0.411), transparent);
+  background-color: #422c49;
+  border-radius: 10%;
+  padding: 36px;
+  border: 0.1px solid rgb(255, 252, 252);
+  text-align: center;
+  box-sizing: border-box;
+  width: 26%; 
+  max-width: none;
+  height: auto;
+
+}
+
+
+#enable-2fa-overlay .overlay-content h2 {
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 16px;
+  font-family: "Itim", cursive;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%; 
+}
+
+#enable-2fa-overlay .overlay-content p {
+  color: #fff;
+  font-size: 1rem;
+  margin-bottom: 18px;
+  font-family: "Itim", cursive;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%; 
+}
+
+#enable-2fa-overlay .overlay-content img {
+  width: 200px;
+  height: 200px;
+  border: 4px solid #502a5e;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+
+
+#enable-2fa-overlay .overlay-content input {
+  background: #6a4d7e;
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  width: 100%; 
+  box-sizing: border-box;
+  font-size: 1rem; 
+}
+
+#enable-2fa-overlay .overlay-content input[type="text"]:focus {
+  border-color: #f105e95f;
+  box-shadow: 0 0 5px rgba(162, 0, 255, 0.3);
+}
+
+
+#enable-2fa-overlay .overlay-content .btn {
+  background: #6a4d7e;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#disable-2fa-overlay .overlay-content {
+  background: linear-gradient(rgba(78, 45, 29, 0.411), transparent);
+  background-color: #422c49;
+  border-radius: 10%;
+  padding: 36px;
+  border: 0.1px solid rgb(255, 252, 252);
+  text-align: center;
+  box-sizing: border-box;
+  width: 26%; 
+  max-width: none;
+  height: auto;
+
+}
+
+
+#disable-2fa-overlay .overlay-content h2 {
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 16px;
+  font-family: "Itim", cursive;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%; 
+}
+
+#disable-2fa-overlay .overlay-content p {
+  color: #fff;
+  font-size: 1rem;
+  margin-bottom: 18px;
+  font-family: "Itim", cursive;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%; 
+}
+
+#disable-2fa-overlay .overlay-content img {
+  width: 200px;
+  height: 200px;
+  border: 4px solid #502a5e;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+
+
+#disable-2fa-overlay .overlay-content input {
+  background: #6a4d7e;
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  width: 100%; 
+  box-sizing: border-box;
+  font-size: 1rem; 
+}
+
+#disable-2fa-overlay .overlay-content input[type="text"]:focus {
+  border-color: #f105e95f;
+  box-shadow: 0 0 5px rgba(162, 0, 255, 0.3);
+}
+
+
+#disable-2fa-overlay .overlay-content .btn {
+  background: #6a4d7e;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+
+
+
+
+
+
+
+#verify-2fa-overlay .overlay-content {
+  background: linear-gradient(rgba(78, 45, 29, 0.411), transparent);
+  background-color: #422c49;
+  border-radius: 10%;
+  padding: 36px;
+  border: 0.1px solid rgb(255, 252, 252);
+  text-align: center;
+  box-sizing: border-box;
+  width: 26%; 
+  max-width: none;
+  height: auto;
+
+}
+
+
+#verify-2fa-overlay .overlay-content h2 {
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 16px;
+  font-family: "Itim", cursive;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%; 
+}
+
+#verify-2fa-overlay .overlay-content p {
+  color: #fff;
+  font-size: 1rem;
+  margin-bottom: 18px;
+  font-family: "Itim", cursive;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%; 
+}
+
+#verify-2fa-overlay .overlay-content img {
+  width: 200px;
+  height: 200px;
+  border: 4px solid #502a5e;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+
+
+#verify-2fa-overlay .overlay-content input {
+  background: #6a4d7e;
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  width: 100%; 
+  box-sizing: border-box;
+  font-size: 1rem; 
+}
+
+#verify-2fa-overlay .overlay-content input[type="text"]:focus {
+  border-color: #f105e95f;
+  box-shadow: 0 0 5px rgba(162, 0, 255, 0.3);
+}
+
+
+#verify-2fa-overlay .overlay-content .btn {
+  background: #6a4d7e;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+
+
+
+
+
+@media (max-width: 1024px) {
+  
+  .settings-container {
+    flex-direction: column;
+  }
+
+  #settings .sidebar {
+    width: 50px; 
+
+    margin-top: 30px;
+  }
+
+  #settings .main-content {
+    width: 50%; 
+    /* padding: 30px; */
+    /* min-height: 50vh;  */
+  }
+
+  #settings .main-content h1 {
+    font-size: 1.5rem; 
+    /* margin-bottom: 30px;  */
+  }
+
+  #settings .main-content .btn {
+    padding: 10px 15px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  
+  .settings-container {
+    flex-direction: column;
+    padding: 0 5px;
+  }
+
+  #settings .sidebar {
+    width: 40px;
+    margin-left: 10px;
+  }
+
+  #settings .main-content {
+    width: 50%;
+    padding: 20px;
+    /* min-height: 60vh; */
+  }
+
+  #settings .main-content h1 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+
+  #settings .main-content .btn {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+}
+
+
+

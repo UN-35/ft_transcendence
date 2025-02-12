@@ -1,0 +1,603 @@
+
+
+
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', async () => {
+    const userIconGameMode = document.querySelector('#game-mode .sidebar #user-icon');
+    const userIconProfile = document.querySelector('#profile .sidebar #grid-icon');
+
+    // Fetch profile data when the page loads
+    await fetchProfileData();
+
+    if (userIconGameMode) {
+        userIconGameMode.addEventListener('click', async () => {
+            await fetchProfileData();
+            showForm('profile');
+        });
+    }
+
+    if (userIconProfile) {
+        userIconProfile.addEventListener('click', () => {
+            showForm('game-mode');
+        });
+    }
+});
+
+document.getElementById('savechanges').addEventListener('click', async (e) => {
+    e.preventDefault();
+    
+    const username = document.getElementById('edit-username').value.trim();
+    const profilePicture = document.getElementById('change-image').files[0];
+    
+    const formData = new FormData();
+    
+    if (username) {
+        formData.append('username', username);
+    }
+    
+    if (profilePicture) {
+        formData.append('profile_picture', profilePicture);
+    }
+    
+    try {
+        const response = await fetch('/accounts/api/update_profile/', {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': getCsrfToken()
+            },
+            body: formData,
+            credentials: 'include'
+        });
+        
+        const data = await response.json();
+        
+        const messageContainer = document.getElementById('editprofile-message-container');
+        
+        if (response.ok && data.status === 'success') {
+            updateProfileUI(data);
+            messageContainer.textContent = 'Profile updated successfully!';
+            messageContainer.style.color = 'green';
+            
+            document.getElementById('editprofile').style.display = 'none';
+            document.getElementById('profile').style.display = 'flex';
+        } else {
+            messageContainer.textContent = data.message || 'Failed to update profile.';
+            messageContainer.style.color = 'red';
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        
+        const messageContainer = document.getElementById('editprofile-message-container');
+        messageContainer.textContent = 'An error occurred. Please try again.';
+        messageContainer.style.color = 'red';
+    }
+});
+
+async function fetchProfileData() {
+    try {
+        const response = await fetch('/accounts/api/profile/', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCsrfToken()
+            },
+            credentials: 'include'
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch profile data');
+        }
+
+        const data = await response.json();
+
+        if (data.status === 'success') {
+            updateProfileUI(data);
+        } else {
+            throw new Error(data.message || 'Failed to load profile data');
+        }
+    } catch (error) {
+        console.error('Error fetching profile:', error);
+        
+        const messageContainer = document.getElementById('profile-message-container');
+        if (messageContainer) {
+            messageContainer.textContent = 'Failed to load profile data. Please try again.';
+            messageContainer.style.color = 'red';
+        }
+    }
+}
+
+function updateProfileUI(data) {
+    const usernameElement = document.getElementById('display-username');
+    if (usernameElement) {
+        usernameElement.textContent = data.user.username || 'N/A';
+    }
+
+    const emailElement = document.getElementById('display-email');
+    if (emailElement) {
+        emailElement.textContent = data.user.email || 'N/A';
+    }
+
+    const profileAvatarImg = document.getElementById('profile-avatar-img');
+    const editAvatarImg = document.getElementById('edit-avatar-img');
+
+    const profilePictureUrl = data.profile_picture || '../img/avatar.png';
+
+    if (profileAvatarImg) {
+        const img = profileAvatarImg.querySelector('img') || profileAvatarImg;
+        img.src = profilePictureUrl;
+    }
+    
+    if (editAvatarImg) {
+        editAvatarImg.src = profilePictureUrl;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// document.addEventListener('DOMContentLoaded', async () => {
+//     const userIconGameMode = document.querySelector('#game-mode .sidebar #user-icon');
+//     const userIconProfile = document.querySelector('#profile .sidebar #grid-icon');
+
+   
+//     if (userIconGameMode) {
+//         userIconGameMode.addEventListener('click', () => {
+//             // fetchAndUpdateProfile();
+//             showForm('profile');
+//         });
+//     }
+
+//     if (userIconProfile) {
+//         userIconProfile.addEventListener('click', () => {
+//             showForm('game-mode');
+//         });
+//     }
+
+//     // await fetchAndUpdateProfile();
+// });
+
+
+
+
+
+// document.addEventListener('DOMContentLoaded', async () => {
+//     // Function to get CSRF token (ensure this function exists in your project)
+//     function getCsrfToken() {
+//         return document.querySelector('[name=csrfmiddlewaretoken]').value;
+//     }
+
+//     // Function to show error or success messages
+//     function showMessage(containerId, message, isError = false) {
+//         const messageContainer = document.getElementById(containerId);
+//         if (messageContainer) {
+//             messageContainer.textContent = message;
+//             messageContainer.style.color = isError ? 'red' : 'green';
+//         }
+//     }
+
+//     // Function to update profile UI elements
+//     function updateProfileUI(data) {
+//         if (data.status !== 'success') {
+//             showMessage('profile-message-container', 'Failed to load profile data.', true);
+//             return;
+//         }
+
+//         const user = data.user;
+//         const profilePictureUrl = data.profile_picture || '{% static "accounts/img/avatar.png" %}';
+
+//         // Update username
+//         const usernameElements = [
+//             document.getElementById('display-username'),
+//             document.getElementById('edit-username')
+//         ];
+//         usernameElements.forEach(el => {
+//             if (el) {
+//                 if (el.tagName.toLowerCase() === 'input') {
+//                     el.value = user.username || '';
+//                 } else {
+//                     el.textContent = user.username || 'N/A';
+//                 }
+//             }
+//         });
+
+//         // Update email
+//         const emailElement = document.getElementById('display-email');
+//         if (emailElement) {
+//             emailElement.textContent = user.email || 'N/A';
+//         }
+
+//         // Update profile pictures
+//         const profilePictureElements = [
+//             document.getElementById('profile-avatar-img'),
+//             document.getElementById('edit-avatar-img')
+//         ];
+//         profilePictureElements.forEach(el => {
+//             if (el) {
+//                 // Check if it's an img element or contains an img element
+//                 const imgElement = el.tagName.toLowerCase() === 'img' ? el : el.querySelector('img') || el;
+//                 imgElement.src = profilePictureUrl;
+//             }
+//         });
+
+//         // Update score if applicable
+//         const scoreElement = document.getElementById('display-score');
+//         if (scoreElement) {
+//             scoreElement.textContent = user.high_score || '0.0';
+//         }
+//     }
+
+//     // Fetch and update profile data
+//     async function fetchAndUpdateProfile() {
+//         try {
+//             const response = await fetch('/accounts/api/profile/', {
+//                 method: 'GET',
+//                 headers: {
+//                     'Content-Type': 'application/json',
+//                     'X-CSRFToken': getCsrfToken()
+//                 },
+//                 credentials: 'include'
+//             });
+
+//             if (!response.ok) {
+//                 throw new Error('Failed to fetch profile data');
+//             }
+
+//             const data = await response.json();
+//             updateProfileUI(data);
+//         } catch (error) {
+//             console.error('Error fetching profile:', error);
+//             showMessage('profile-message-container', 'Failed to load profile data.', true);
+//         }
+//     }
+
+//     // Handle profile picture preview
+//     const profilePictureInput = document.getElementById('change-image');
+//     if (profilePictureInput) {
+//         profilePictureInput.addEventListener('change', function(e) {
+//             const file = e.target.files[0];
+//             if (file) {
+//                 const reader = new FileReader();
+//                 reader.onload = function(event) {
+//                     const profilePictureElements = [
+//                         document.getElementById('profile-avatar-img'),
+//                         document.getElementById('edit-avatar-img')
+//                     ];
+                    
+//                     profilePictureElements.forEach(el => {
+//                         if (el) {
+//                             const imgElement = el.tagName.toLowerCase() === 'img' ? el : el.querySelector('img') || el;
+//                             imgElement.src = event.target.result;
+//                         }
+//                     });
+//                 };
+//                 reader.readAsDataURL(file);
+//             }
+//         });
+//     }
+
+//     // Handle profile update
+//     const saveChangesButton = document.getElementById('savechanges');
+//     if (saveChangesButton) {
+//         saveChangesButton.addEventListener('click', async (e) => {
+//             e.preventDefault();
+            
+//             const username = document.getElementById('edit-username').value.trim();
+//             const profilePicture = document.getElementById('change-image').files[0];
+            
+//             const formData = new FormData();
+            
+//             if (username) {
+//                 formData.append('username', username);
+//             }
+            
+//             if (profilePicture) {
+//                 formData.append('profile_picture', profilePicture);
+//             }
+            
+//             try {
+//                 const response = await fetch('/accounts/api/update_profile/', {
+//                     method: 'POST',
+//                     headers: {
+//                         'X-CSRFToken': getCsrfToken()
+//                     },
+//                     body: formData,
+//                     credentials: 'include'
+//                 });
+                
+//                 const data = await response.json();
+                
+//                 if (response.ok && data.status === 'success') {
+//                     // Update UI immediately
+//                     updateProfileUI(data);
+                    
+//                     // Show success message
+//                     showMessage('editprofile-message-container', 'Profile updated successfully!');
+                    
+//                     // Hide edit profile, show profile
+//                     document.getElementById('editprofile').style.display = 'none';
+//                     document.getElementById('profile').style.display = 'flex';
+//                 } else {
+//                     // Show error message
+//                     showMessage('editprofile-message-container', data.message || 'Failed to update profile.', true);
+//                 }
+//             } catch (error) {
+//                 console.error('Error:', error);
+//                 showMessage('editprofile-message-container', 'An error occurred. Please try again.', true);
+//             }
+//         });
+//     }
+
+//     // Fetch profile on page load
+//     await fetchAndUpdateProfile();
+
+//     // Handle navigation between profile and edit profile
+//     const editProfileButton = document.getElementById('editprfl');
+//     if (editProfileButton) {
+//         editProfileButton.addEventListener('click', () => {
+//             document.getElementById('profile').style.display = 'none';
+//             document.getElementById('editprofile').style.display = 'flex';
+//         });
+//     }
+
+//     const goBackButton = document.getElementById('goback-btn');
+//     if (goBackButton) {
+//         goBackButton.addEventListener('click', () => {
+//             document.getElementById('editprofile').style.display = 'none';
+//             document.getElementById('profile').style.display = 'flex';
+//         });
+//     }
+// });
+
+
+
+
+
+// document.getElementById('savechanges').addEventListener('click', async (e) => {
+//     e.preventDefault();
+    
+   
+//     const username = document.getElementById('edit-username').value.trim();
+//     const profilePicture = document.getElementById('change-image').files[0];
+    
+    
+//     const formData = new FormData();
+    
+ 
+//     if (username) {
+//         formData.append('username', username);
+//     }
+    
+
+//     if (profilePicture) {
+//         formData.append('profile_picture', profilePicture);
+//     }
+    
+//     try {
+//         const response = await fetch('/accounts/api/update_profile/', {
+//             method: 'POST',
+//             headers: {
+//                 'X-CSRFToken': getCsrfToken()
+//             },
+//             body: formData,
+//             credentials: 'include'
+//         });
+        
+//         const data = await response.json();
+        
+//         const messageContainer = document.getElementById('editprofile-message-container');
+        
+//         if (response.ok && data.status === 'success') {
+            
+//             const usernameElement = document.getElementById('display-username');
+//             if (usernameElement) {
+//                 usernameElement.textContent = data.user.username || 'N/A';
+//             }
+
+            
+//             const emailElement = document.getElementById('display-email');
+//             if (emailElement) {
+//                 emailElement.textContent = data.user.email || 'N/A';
+//             }
+
+            
+//             const profileAvatarImg = document.getElementById('profile-avatar-img');
+//             const editAvatarImg = document.getElementById('edit-avatar-img');
+
+            
+//             const profilePictureUrl = data.profile_picture || '../img/avatar.png';
+
+            
+//             if (profileAvatarImg) {
+//                 const img = profileAvatarImg.querySelector('img') || profileAvatarImg;
+//                 img.src = profilePictureUrl;
+//             }
+            
+//             if (editAvatarImg) {
+//                 editAvatarImg.src = profilePictureUrl;
+//             }
+            
+            
+//             messageContainer.textContent = 'Profile updated successfully!';
+//             messageContainer.style.color = 'green';
+            
+            
+//             document.getElementById('editprofile').style.display = 'none';
+//             document.getElementById('profile').style.display = 'flex';
+//         } else {
+            
+//             messageContainer.textContent = data.message || 'Failed to update profile.';
+//             messageContainer.style.color = 'red';
+//         }
+//     } catch (error) {
+//         console.error('Error:', error);
+        
+//         const messageContainer = document.getElementById('editprofile-message-container');
+//         messageContainer.textContent = 'An error occurred. Please try again.';
+//         messageContainer.style.color = 'red';
+//     }
+// });
+
+
+
+// document.getElementById('goback-btn').addEventListener('click', () => {
+//     document.getElementById('editprofile').style.display = 'none';
+//     document.getElementById('profile').style.display = 'flex';
+// });
+
+
+// async function fetchAndUpdateProfile() {
+//     try {
+//         const response = await fetch('/accounts/api/profile/', {
+//             method: 'GET',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//                 'X-CSRFToken': getCsrfToken(),
+//             },
+//             credentials: 'include'
+//         });
+
+//         if (response.ok) {
+//             const data = await response.json();
+//             updateProfileUI(data);
+//         } else {
+//             showMessage('profile-message-container', 'Failed to load profile data.', true);
+//         }
+//     } catch (error) {
+//         console.error('Error fetching profile:', error);
+//         showMessage('profile-message-container', 'An error occurred. Please try again.', true);
+//     }
+// }
+
+
+// function updateProfileUI(data) {
+//     const messageContainer = document.getElementById('profile-message-container');
+//     messageContainer.textContent = '';
+
+//     if (data.status === 'success') {
+//         const user = data.user;
+        
+        
+//         const elements = {
+//             'display-username': user.username,
+//             'display-email': user.email,
+//             'display-score': user.high_score,
+//             'profile-avatar-img': data.profile_picture
+//         };
+
+//         for (const [id, value] of Object.entries(elements)) {
+//             const element = document.getElementById(id);
+//             if (element) {
+//                 if (id === 'profile-avatar-img') {
+//                     element.src = value || '../img/avatar1.png';
+//                 } else {
+//                     element.textContent = value || 'N/A';
+//                 }
+//             }
+//         }
+//     } else {
+//         messageContainer.textContent = 'Failed to load profile data.';
+//     }
+// }
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Change this to target the actual <a> tag within the signuplink
+    const signupLink = document.querySelector('.signuplink a');
+    if (signupLink) {
+        signupLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            showForm('signup');
+        });
+    }
+});
+
+
+
+
+
+
+
+
+import requests
+from django.contrib.auth import login
+from django.http import JsonResponse
+from django.shortcuts import redirect
+from .models import CustomUser
+from django.core.files.base import ContentFile
+from django.conf import settings
+import base64
+
+def callback_from_42(request):
+    code = request.GET.get('code')
+    if not code:
+        return JsonResponse({'status': 'error', 'message': 'Authorization code not provided'}, status=400)
+
+    # Exchange code for access token
+    token_response = requests.post(settings.THIRTYTWO_TOKEN_URL, data={
+        'grant_type': 'authorization_code',
+        'client_id': settings.THIRTYTWO_CLIENT_ID,
+        'client_secret': settings.THIRTYTWO_CLIENT_SECRET,
+        'code': code,
+        'redirect_uri': settings.THIRTYTWO_REDIRECT_URI,
+    })
+    if token_response.status_code != 200:
+        return JsonResponse({'status': 'error', 'message': 'Failed to retrieve access token'}, status=400)
+
+    access_token = token_response.json().get('access_token')
+
+    # Fetch user data
+    user_info_response = requests.get(settings.THIRTYTWO_USER_INFO_URL, headers={
+        'Authorization': f'Bearer {access_token}',
+    })
+    if user_info_response.status_code != 200:
+        return JsonResponse({'status': 'error', 'message': 'Failed to fetch user info'}, status=400)
+
+    user_data = user_info_response.json()
+    email = user_data.get('email')
+    username = user_data.get('login')
+    profile_picture_url = user_data.get('image_url')  # Assuming 42 API provides this field
+
+    if not email or not username:
+        return JsonResponse({'status': 'error', 'message': 'Incomplete user data'}, status=400)
+
+    # Check if user exists
+    user, created = CustomUser.objects.get_or_create(email=email, defaults={'username': username})
+    if created:
+        user.set_unusable_password()  # Set a placeholder password for OAuth users
+    
+    # Update profile picture if available
+    if profile_picture_url:
+        try:
+            # Download the profile picture
+            response = requests.get(profile_picture_url)
+            if response.status_code == 200:
+                # Save the profile picture to the user model
+                user.profile_picture.save(
+                    f"{username}_profile.jpg",
+                    ContentFile(response.content),
+                    save=True
+                )
+        except Exception as e:
+            print(f"Error downloading profile picture: {e}")
+
+    user.save()
+
+    # Log the user in
+    login(request, user)
+    return redirect('/accounts/#dashboard')

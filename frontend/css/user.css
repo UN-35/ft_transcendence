@@ -1,0 +1,211 @@
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; 
+    height: 100%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 10px; 
+    box-sizing: border-box;
+    overflow-x: auto;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  
+  
+#user-profile-overlay .overlay-content {
+  background: linear-gradient(rgba(78, 45, 29, 0.411), transparent);
+  background-color: #422c49;
+  border-radius: 10%;
+  padding: 36px;
+  border: 0.1px solid rgb(255, 252, 252);
+  text-align: center;
+  box-sizing: border-box;
+  width: 26%; 
+  max-width: none;
+  height: auto;
+
+}
+
+
+#user-profile-overlay .overlay-content h2 {
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 26px;
+  font-family: "Itim", cursive;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%; 
+}
+
+
+
+
+#user-profile-overlay .overlay-content .btn {
+  background: #6a4d7e;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin-bottom: 26px;
+  cursor: pointer;
+  text-align: center;
+  width: 50%;
+  box-sizing: border-box;
+  font-size: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+    
+#user-profile-overlay .overlay-content img {
+  /* width: 20px;
+  height: 60px;
+  transition: transform 0.3s ease;  */
+  width: 40%;
+  border-radius: 50px;
+  height: 40%;
+  transition: transform 0.3s ease;
+  
+}
+  
+
+#user-profile-overlay .overlay-content img:hover {
+  transform: rotate(360deg);
+}
+
+#user-profile-overlay .overlay-content h2 {
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 26px;
+  font-family: "Itim", cursive;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%; 
+}
+
+#user-profile-overlay .overlay-content p {
+  background: #6a4d7e;
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: 20px;
+  margin-bottom: 26px;
+  width: 100%; 
+  box-sizing: border-box;
+  font-size: 1,3rem; 
+}
+
+#user-profile-overlay .overlay-content button {
+  background: #6a4d7e;
+  border: none;
+  color: white;
+  /* padding: 10px 20px; */
+  border-radius: 20px;
+  margin-bottom: 26px;
+  cursor: pointer;
+  text-align: center;
+  width: 50%;
+  box-sizing: border-box;
+  font-size: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+
+
+#user-profile-overlay #addfrnd {
+  background-color: #dc3545;
+  color: white;
+  width: 100%;
+  padding: 10px 20px;
+  margin-right: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+#user-profile-overlay #addfrnd:hover {
+  background-color: #0d9714;
+}
+
+#user-profile-overlay .close-overlay {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+#user-profile-overlay .close-overlay:hover {
+  background-color: #d32f2f;
+}
+
+
+#user-profile-overlay #display-useremail {
+  font-size: 20px;
+  color: #ffffff;
+  margin-top: 5px;
+  text-align: center;
+  font-style: italic;
+}
+
+
+#user-profile-overlay #display-userusername {
+  font-size: 25px;
+  /* font-weight: bold; */
+  color: #fffcfc;
+  margin-top: 20px;
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+
+
+
+
+#user-profile-overlay #level, .profile-level-label {
+    font-size: 20px;
+    /* font-weight: bold; */
+    color: #ffffff;
+    text-align: left;
+    margin-right: 10px;
+}
+
+
+#user-profile-overlay #display-userscore, .profile-level-value {
+    font-size: 20px;
+    color: #dc3545;
+    text-align: right;
+    font-weight: bold;
+}
+
+
+#user-profile-overlay .profile-level-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    padding: 5px;
+    border: 5px solid #ccc;
+    border-radius: 25px;
+    /* background-color: #f9f9f9; */
+}
+
+
+
+

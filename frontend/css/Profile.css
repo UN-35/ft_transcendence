@@ -1,0 +1,302 @@
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  box-sizing: border-box;
+  width: 100%;
+
+  color: #fff;    
+}
+
+#profile .profile-card {
+  background-color: rgba(78, 45, 29, 0.411);
+  background: linear-gradient(rgba(78, 45, 29, 0.411), transparent);
+  border-radius: 10%;
+  width: 26%;
+  min-height: 50vh;
+  height: 47vh;
+  padding: 20px;
+  border: 0.1px solid rgb(255, 252, 252);
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+#profile .sidebar {
+  width: 70px;
+  height: 90vh;
+  background-color: #5c4b7d9d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  position: absolute;
+  margin-left: 30px;
+  margin-top: 45px;
+  background: linear-gradient(rgba(60, 45, 71, 0.608),#2E2238);
+  left: 0;
+  border-radius: 15px; 
+
+  
+}
+
+#profile .sidebar .middle-icons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+#profile .sidebar .icon{
+  margin: 20px 0;
+  width: 40px;
+  height: 40px;
+}
+
+#profile .sidebar .icon img {
+  width: 100%;
+  height: auto;
+}
+
+
+#profile .sidebar .icon:hover {
+  background-color: #5c4b7d;
+  border-radius: 50%;
+}
+
+#profile .profile-avatar img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 4px solid #502a5e;
+  object-fit: cover;
+  margin-bottom: 40px;
+  white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+
+#profile .profile-name {
+  font-family: "Itim", cursive;
+  
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  color: #e1d3ee;
+  white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+#profile .profile-email {
+  font-family: "Itim", cursive;
+  font-size: 25px;
+  margin-bottom: 40px;
+  color: #b49aba;
+  white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+#profile .profile-level-container {
+  font-family: "Itim", cursive;
+  display: flex;
+  justify-content: space-between;
+
+  border-radius: 10px;
+  margin-bottom: 25px;
+  white-space: nowrap;
+overflow: hidden;
+width: 100%;
+text-overflow: ellipsis;
+}
+
+#profile .profile-level-label {
+  font-family: "Itim", cursive;
+  font-size: 40px;
+  border-radius: 20px;
+  background-color: #562C64;
+  color: #d5bde5;
+  white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+#profile .profile-level-value {
+  font-family: "Itim", cursive;
+  font-size: 40px;
+  border-radius: 20px;
+  background-color: #562C64;
+  font-weight: bold;
+  color: #f6e4ff;
+  white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+#profile .editbtn {
+  font-family: "Itim", cursive;
+  display: flex;
+  justify-content: center;    
+  white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+
+
+#profile .edit-profile-btn {
+  font-family: "Itim", cursive;
+  background: #562C64;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  /* margin-top: 25px; */
+  font-size: 25px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+#profile .edit-profile-btn:hover {
+  background: #83428d;
+}
+
+#profile .edit-profile-btn img {
+  padding-left: 5px;
+  width: 25px;
+  height: 25px;
+}
+
+#profile .edit-profile-btn i { 
+  font-size: 12px;
+}
+
+
+#profile, #editprofile {
+  display: none;
+}
+
+#profile.active, #editprofile.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+
+
+
+
+
+
+@media (max-width: 1024px) {
+#profile .profile-card {
+    width: 40%; 
+}
+
+#profile .profile-avatar img {
+    width: 150px;
+    height: 150px;
+}
+
+#profile .profile-name {
+    font-size: 30px;
+}
+
+#profile .profile-email {
+    font-size: 20px;
+}
+
+#profile .profile-level-container {
+    flex-direction: column; 
+    margin-bottom: 15px;
+}
+
+#profile .profile-level-label, 
+#profile .profile-level-value {
+    font-size: 30px;
+    width: 100%;
+    margin: 5px 0;
+}
+
+#profile .edit-profile-btn {
+    font-size: 20px;
+}
+}
+
+
+@media (max-width: 600px) {
+#profile .profile-container {
+  flex-direction: column;
+  align-items: center;  
+}
+/* #profile .profile-card {
+  width: 80%;
+  min-height: auto;
+} */
+
+#profile .sidebar {
+  position: relative;
+  width: 50px;
+  margin-left: 0;
+  margin-top: 10px;
+}
+
+#profile .profile-card {
+    width: 50%; 
+    min-height: auto;
+}
+
+#profile .profile-avatar img {
+    width: 120px;
+    height: 120px;
+}
+
+#profile .profile-name {
+    font-size: 24px;
+}
+
+#profile .profile-email {
+    font-size: 18px;
+}
+
+#profile .profile-level-container {
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+#profile .profile-level-label, 
+#profile .profile-level-value {
+    font-size: 25px;
+    margin: 5px 0;
+}
+
+#profile .edit-profile-btn {
+    font-size: 18px;
+    padding: 8px 16px;
+}
+
+#profile .sidebar {
+    width: 50px;
+    position: relative;
+    margin-right: 50px;
+    margin-top: 20px;
+}
+
+#profile .profile-container {
+    flex-direction: column;
+}
+}
+

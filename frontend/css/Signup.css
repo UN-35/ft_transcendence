@@ -1,0 +1,164 @@
+
+.signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+    width: 100%; 
+    background: url('../img/test.jpeg') no-repeat;
+    background-size: cover;
+    background-position: bottom;
+}
+
+
+#signup .form-section {
+    background-color: rgba(78, 45, 29, 0.411);
+    background: linear-gradient(rgba(78, 45, 29, 0.411), transparent);
+    padding: 60px;
+    border-radius: 28px;
+    max-width: 500px;
+    width: 100%;
+    border: 0.1px solid rgb(255, 252, 252);
+    text-align: center;
+}
+
+#signup-title {
+    font-family: "Itim", cursive;
+    font-style: normal;
+    font-size: 2rem;
+    color: #ffffff;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#signup-subtitle {
+    font-family: "Itim", cursive;
+    font-size: 0.9rem;
+    color: #ffffff;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+#signup .input-group {
+    font-family: "Itim", cursive;
+    font-size: 1.2rem;
+    margin-bottom:  1rem;
+    color: #ffffff;
+}
+
+
+#signup .input-group label {
+    font-family: "Itim", cursive;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+    font-size: 0.9em;
+}
+
+#signup .input-group input {
+    font-family: "Itim", cursive;
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    background: #d5bfda9f;
+    border: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    outline: none;
+    color: #ffffff;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+#signup .input-group input::placeholder {
+    color: #d3d3d3;
+}
+
+#signupBtn {
+    width: 70%; 
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 8px;
+    background-color: #e57373;
+    color: #ffffff;
+    font-size: 1em;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#signupBtn:hover {
+    background-color: #c65b5b;
+}
+
+#signup  .extra-options {
+    font-family: "Itim", cursive;
+    margin-top: 15px;
+    color: #d3d3d3;
+}
+
+#signup  .toggle-form a {
+    color: #e57373;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#signup .toggle-form a:hover {
+    color: #ff8a80;
+    text-decoration: underline;
+}
+
+
+
+@media (max-width: 768px) {
+    .signup-container {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    #signup .form-section {
+        max-width: 90%; 
+        padding: 40px; 
+    }
+
+    #signup-title {
+        font-size: 1.5rem; 
+    }
+}
+
+@media (max-width: 480px) {
+    #signup .form-section {
+        max-width: 95%; 
+        padding: 30px;
+    }
+
+    #signup .input-group input {
+        font-size: 0.9rem; 
+        padding: 10px;
+    }
+
+    #signupBtn {
+        font-size: 1rem; 
+        padding: 12px;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .signup-container {
+        background-size: contain; 
+        background-position: center; 
+    }
+}
+
+#signupBtn {
+    min-height: 44px;
+}
+
+@media (max-width: 480px) {
+    #signup .input-group input {
+        padding: 14px; 
+    }
+}
+

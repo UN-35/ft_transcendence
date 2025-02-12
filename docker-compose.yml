@@ -1,0 +1,81 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mypassword
+    networks:
+      - mynetwork
+
+  accounts_service:
+    build:
+      context: ./accounts_service
+    command: sh -c "gunicorn accounts_service.wsgi:application --bind 0.0.0.0:8000"
+    volumes:
+      - ./accounts_service:/app
+      - static_accounts:/app/staticfiles
+      - ./accounts_service/media:/app/media
+    expose:
+      - "8000"
+    depends_on:
+      - db
+    networks:
+      - mynetwork
+
+  game_service:
+    build:
+      context: ./game_service
+    volumes:
+      - ./game_service:/game
+      - ./accounts_service:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - mynetwork
+
+
+  nginx:
+    image: nginx:1.25
+    volumes:
+      - ./frontend:/app/frontend
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/ssl:/etc/nginx/ssl
+      - static_accounts:/app/accounts-static
+      - static_game:/app/game-static
+      - static_friends:/app/friends-static
+      - ./accounts_service/media:/app/media
+    ports:
+      - "8080:80"
+      - "8443:443"
+    depends_on:
+      - accounts_service
+      - game_service
+    networks:
+      - mynetwork
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8081:8080"
+    networks:
+      - mynetwork
+    depends_on:
+      - db
+
+networks:
+  mynetwork:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  static_accounts:
+  static_game:
+  static_friends:
