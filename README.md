@@ -185,10 +185,6 @@ make restart
 
 This project is part of the 42 school curriculum and is intended for educational purposes.
 
-## 📞 Contact
-
-For any inquiries or issues, please open an issue on this repository.
-
 ---
 
 Enjoy the game! 🏓
