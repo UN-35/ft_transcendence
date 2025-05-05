@@ -113,11 +113,9 @@ Our application provides a RESTful API for various functionalities:
 
 ## 👥 Contributing
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+1. ([@Hiba](https://github.com/hiamedja))
+2. ([@Kaouthar](https://github.com/kaoutharrr))
+3. ([@UN35](https://github.com/UN-35))
 
 ## 🔒 Security Features
 
